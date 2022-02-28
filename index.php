@@ -164,6 +164,7 @@
         }
 
         function fold(winner, _oSeat) {
+            let data;
             data = {
                 'gameId': gameId,
                 'win': false,
@@ -173,7 +174,6 @@
         }
 
         function raise(winner, _oSeat) {
-            console.log(winner)
             let data;
             switch (winner) {
                 case 'dealer':
@@ -199,7 +199,6 @@
                     };
                     break;
             }
-            console.log(data)
 
             sendData(data, 'raise');
         }
