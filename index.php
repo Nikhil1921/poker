@@ -61,8 +61,8 @@
                 win_occurrence: 40, //WIN OCCURRENCE PERCENTAGE. VALUES BETWEEN 0-100
                 min_bet: 0.1, //MIN BET PLAYABLE BY USER. DEFAULT IS 0.1$
                 max_bet: 300, //MAX BET PLAYABLE BY USER. 
-                money: <?= $user['wallet'] ?>, //STARING CREDIT FOR THE USER
-                game_cash: <?= $user['wallet'] ?>, //GAME CASH AVAILABLE WHEN GAME STARTS
+                money: <?= $user['wallet']; ?>, //STARING CREDIT FOR THE USER
+                game_cash: <?= $user['wallet']; ?>, //GAME CASH AVAILABLE WHEN GAME STARTS
                 fiche_values: [0.1, 1, 5, 10, 25, 100], //FICHE VALUES
                 payout: [
                     100, //MULTIPLIER FOR ROYAL FLUSH
@@ -76,7 +76,7 @@
                     1 //MULTIPLIER FOR ONE PAIR OR LESS
                 ],
                 time_show_hand: 1500, //TIME (IN MILLISECONDS) SHOWING LAST HAND
-                show_credits: true, //SET THIS VALUE TO FALSE IF YOU DON'T TO SHOW CREDITS BUTTON
+                show_credits: false, //SET THIS VALUE TO FALSE IF YOU DON'T TO SHOW CREDITS BUTTON
                 fullscreen: true, //SET THIS TO FALSE IF YOU DON'T WANT TO SHOW FULLSCREEN BUTTON
                 check_orientation: true, //SET TO FALSE IF YOU DON'T WANT TO SHOW ORIENTATION ALERT ON MOBILE DEVICES
                 audio_enable_on_startup: false, //ENABLE/DISABLE AUDIO WHEN GAME STARTS 
@@ -106,6 +106,7 @@
                 if (getParamValue('ctl-arcade') === "true") {
                     parent.__ctlArcadeEndSession();
                 }
+                location.reload();
                 //...ADD YOUR CODE HERE EVENTUALLY
             });
 
