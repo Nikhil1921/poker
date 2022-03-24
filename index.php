@@ -53,6 +53,17 @@
 <body ondragstart="return false;" ondrop="return false;">
     <div style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%"></div>
     <script>
+        "use strict"
+        let wallet = <?= $user['wallet']; ?>;
+        $.ajax({
+            url: `getBal.php`,
+            type: 'GET',
+            cache: false,
+            dataType: 'JSON'
+        }).done((res) => {
+            wallet = res;
+        });
+
         var oMain;
         var dealPrice = 0;
 
@@ -61,8 +72,8 @@
                 win_occurrence: 40, //WIN OCCURRENCE PERCENTAGE. VALUES BETWEEN 0-100
                 min_bet: 0.1, //MIN BET PLAYABLE BY USER. DEFAULT IS 0.1$
                 max_bet: 300, //MAX BET PLAYABLE BY USER. 
-                money: <?= $user['wallet']; ?>, //STARING CREDIT FOR THE USER
-                game_cash: <?= $user['wallet']; ?>, //GAME CASH AVAILABLE WHEN GAME STARTS
+                money: wallet, //STARING CREDIT FOR THE USER
+                game_cash: wallet, //GAME CASH AVAILABLE WHEN GAME STARTS
                 fiche_values: [0.1, 1, 5, 10, 25, 100], //FICHE VALUES
                 payout: [
                     100, //MULTIPLIER FOR ROYAL FLUSH
@@ -121,6 +132,7 @@
                         score: iMoney
                     });
                 }
+                dealPrice = 0;
                     //...ADD YOUR CODE HERE EVENTUALLY
             });
 
@@ -153,6 +165,10 @@
 
         var gameId;
 
+        function changeBet(iCurBet) {
+            dealPrice = iCurBet;
+        }
+
         function deal() {
             gameId = Math.floor(Date.now() / 1000);
             data = {
@@ -171,6 +187,7 @@
                 'win': false,
                 'money': dealPrice.toFixed(2)
             };
+            /* dealPrice = 0; */
             sendData(data, 'fold');
         }
 
@@ -200,7 +217,7 @@
                     };
                     break;
             }
-
+            /* dealPrice = 0; */
             sendData(data, 'raise');
         }
 

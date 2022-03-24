@@ -525,7 +525,7 @@ function CGame(oData){
         this.clearBets();
         var iCurBet = _oSeat.rebet();
         _iGameCash += iCurBet;
-
+        changeBet(iCurBet);
         
         _oInterface.enable(true,false,false);
         _oInterface.refreshCredit(_oSeat.getCredit());
