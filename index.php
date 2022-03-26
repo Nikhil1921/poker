@@ -171,7 +171,7 @@
 
         function deal() {
             gameId = Math.floor(Date.now() / 1000);
-            data = {
+            let data = {
                 'memberId': <?= $user['id'] ?>,
                 'gameId': gameId,
                 'money': dealPrice.toFixed(2)
